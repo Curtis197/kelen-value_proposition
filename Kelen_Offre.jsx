@@ -89,7 +89,7 @@ function Lead({ children, light = false }) {
 
 // ─── SECTIONS ───
 
-function Hero() {
+function Hero({ onNavigateToPro }) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setTimeout(() => setMounted(true), 80); }, []);
 
@@ -117,7 +117,19 @@ function Hero() {
         {/* Nav */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 80 }}>
           <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 26, fontWeight: 400, color: "#c9963a", letterSpacing: "0.16em" }}>KELEN</span>
-          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: "#4a4540", letterSpacing: "0.1em", textTransform: "uppercase" }}>Résumé de l'offre — 2026</span>
+          <button
+            onClick={onNavigateToPro}
+            style={{
+              background: "none", border: "none", cursor: "pointer",
+              fontFamily: "'DM Mono', monospace", fontSize: 10,
+              color: "#4a4540", letterSpacing: "0.1em", textTransform: "uppercase",
+              transition: "color 0.2s",
+            }}
+            onMouseEnter={e => e.currentTarget.style.color = "#c9963a"}
+            onMouseLeave={e => e.currentTarget.style.color = "#4a4540"}
+          >
+            Exemple de profil →
+          </button>
         </div>
 
         {/* Titre principal */}
@@ -528,7 +540,7 @@ function Final() {
 }
 
 // ─── APP PRINCIPALE ───
-export default function KelendOffre() {
+export default function KelendOffre({ onNavigateToPro }) {
   return (
     <>
       <style>{`
@@ -541,7 +553,7 @@ export default function KelendOffre() {
         }
       `}</style>
       <div style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 300 }}>
-        <Hero />
+        <Hero onNavigateToPro={onNavigateToPro} />
         <ProfileSection />
         <AISection />
         <PricingSection />
